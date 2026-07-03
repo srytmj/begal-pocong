@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Begal Pocong — Story Map</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background:#080810;
+  font-family:'Segoe UI',sans-serif;
+  color:#e0d5c5;
+  height:100vh;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+}
+
+header {
+  padding:12px 20px 8px;
+  border-bottom:1px solid #1a1a2a;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-shrink:0;
+}
+header h1 {
+  font-size:1em;
+  letter-spacing:3px;
+  color:#c8a96e;
+  text-shadow:0 0 12px #c8a96e44;
+}
+header h1 span { color:#8b0000; }
+
+.legend {
+  display:flex; gap:12px; flex-wrap:wrap;
+}
+.leg { display:flex; align-items:center; gap:5px; font-size:0.68em; color:#666; }
+.leg-dot { width:9px; height:9px; border-radius:50%; }
+
+#graph-area {
+  flex:1;
+  overflow:auto;
+  position:relative;
+  cursor:grab;
+}
+#graph-area:active { cursor:grabbing; }
+
+svg {
+  display:block;
+  min-width:1600px;
+  height:620px;
+}
+
+.node-group { cursor:pointer; }
+.node-circle {
+  transition: filter 0.15s;
+}
+.node-group:hover .node-circle {
+  filter: brightness(1.5) drop-shadow(0 0 6px var(--nc));
+}
+.node-group.active .node-circle {
+  filter: brightness(1.8) drop-shadow(0 0 14px var(--nc));
+}
+.node-group.dimmed .node-circle { opacity:0.15; }
+.node-group.dimmed text { opacity:0.1; }
+
+.node-label {
+  font-size:10px;
+  fill:#c8b89a;
+  text-anchor:middle;
+  pointer-events:none;
+  transition:opacity 0.15s;
+}
+.node-day {
+  font-size:9px;
+  fill:#555;
+  text-anchor:middle;
+  pointer-events:none;
+  font-style:italic;
+  transition:opacity 0.15s;
+}
+
+.edge-line { transition: opacity 0.15s; }
+.edge-line.dimmed  { opacity:0.05; }
+.edge-line.highlight { opacity:1; }
+.edge-line.normal  { opacity:0.35; }
+
+.edge-label {
+  font-size:9px;
+  font-weight:bold;
+  text-anchor:middle;
+  transition:opacity 0.15s;
+  pointer-events:none;
+}
+.edge-label.dimmed { opacity:0.05; }
+
+#info {
+  flex-shrink:0;
+  background:linear-gradient(to right, #0d0d15, #0a0a12);
+  border-top:1px solid #1a1a2a;
+  padding:14px 20px;
+  min-height:90px;
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:10px;
+  align-items:start;
+}
+#info-tag {
+  font-size:0.65em;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:#555;
+  margin-bottom:3px;
+}
+#info-title {
+  font-size:1em;
+  font-weight:bold;
+  color:#c8a96e;
+  margin-bottom:5px;
+}
+#info-desc {
+  font-size:0.8em;
+  color:#999;
+  line-height:1.6;
+  max-width:800px;
+  white-space:pre-line;
+}
+#info-right {
+  font-size:0.68em;
+  color:#444;
+  text-align:right;
+  white-space:nowrap;
+  padding-top:4px;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>BEGAL <span>POCONG</span> — Story Map</h1>
+  <div class="legend">
+    <div class="leg"><div class="leg-dot" style="background:#4a8aaa"></div>Shared Story</div>
+    <div class="leg"><div class="leg-dot" style="background:#aa4444"></div>Jalur A</div>
+    <div class="leg"><div class="leg-dot" style="background:#4a8a4a"></div>Jalur B</div>
+    <div class="leg"><div class="leg-dot" style="background:#8a4aaa"></div>Jalur C</div>
+    <div class="leg"><div class="leg-dot" style="background:#cccc44"></div>Branch Point</div>
+    <div class="leg"><div class="leg-dot" style="background:#cc4444"></div>Ending</div>
+  </div>
+</header>
+
+<div id="graph-area">
+  <svg id="svg" viewBox="0 0 1600 620" preserveAspectRatio="xMidYMid meet"></svg>
+</div>
+
+<div id="info">
+  <div>
+    <div id="info-tag">Node Detail</div>
+    <div id="info-title">Klik node mana saja</div>
+    <div id="info-desc">Setiap node adalah momen atau hari penting dalam cerita. Klik untuk lihat apa yang terjadi, dan lihat jalur yang terhubung.</div>
+  </div>
+  <div id="info-right">drag untuk scroll ←→<br>klik node untuk detail<br>klik lagi untuk reset</div>
+</div>
+
+<script>
+const NODES = [
+  // ── SHARED ──
+  { id:'d1',  x:80,  y:310, r:22, color:'#0d2035', stroke:'#4a8aaa', day:'Hari 1',  label:'Kedatangan', tag:'Shared',
+    desc:'MC tiba di Desa Ngudilancur naik motor. Kontrakan sempit, tapi murah. Ucok langsung nyaman nongkrong di jendela. Desa terasa tenang — terlalu tenang untuk ukuran tempat yang punya nama seperti ini.' },
+  { id:'d3',  x:185, y:310, r:20, color:'#0d2035', stroke:'#4a8aaa', day:'Hari 3',  label:'Kenal Pak RT', tag:'Shared',
+    desc:'Pak RT datang berkunjung, ramah sekali. Bawa jajan. Nawarin kalau ada apa-apa bilang dia dulu. Ucok langsung ngumpet di bawah kasur waktu Pak RT masuk — pertama kalinya Ucok begitu. MC tidak ngeh.' },
+  { id:'d7',  x:285, y:310, r:20, color:'#0d2035', stroke:'#4a8aaa', day:'Hari 7',  label:'Ucok Pertama\nAneh', tag:'Shared',
+    desc:'Malam hari Ucok ngeong terus ke arah tembok sebelah barat. Tidak ada apa-apa di sana. MC ketuk tembok — kosong. Ucok berhenti ngeong, lalu balik manja seperti tidak ada yang terjadi.' },
+  { id:'d14', x:380, y:310, r:20, color:'#0d2035', stroke:'#4a8aaa', day:'Hari 14', label:'Pengajian &\nUstadz Faruq', tag:'Shared',
+    desc:'MC diajak Pak RT ke pengajian warga. Pertama kali ketemu Ustadz Faruq — suara tenang, pakaian rapi, semua orang hormat. MC tidak curiga sama sekali. Catatan: suhu ruangan terasa turun dua derajat tiap Ustadz Faruq berdiri.' },
+  { id:'d21', x:472, y:310, r:20, color:'#0d2035', stroke:'#4a8aaa', day:'Hari 21', label:'Rute Aneh', tag:'Shared',
+    desc:'Ada paket yang harus diantar ke ujung desa — jalan buntu yang tidak ada di aplikasi. Alamatnya nyata, tapi MC tidak ingat siapa yang membuka pintu. Ucok berdiri tegak waktu MC pulang, bulu naik separuh.' },
+  { id:'d28', x:562, y:310, r:20, color:'#0d2035', stroke:'#4a8aaa', day:'Hari 28', label:'Ucok: Rumah\nPak RT', tag:'Shared',
+    desc:'Pertama kalinya Ucok bulu berdiri penuh di depan rumah Pak RT. MC mau masuk, Ucok ngeong keras dan cakarin pintu. MC ketawa — "Ucok cemburu sama Pak RT kali." Tapi MC tidak jadi masuk hari itu.' },
+  { id:'d35', x:650, y:310, r:20, color:'#0d2035', stroke:'#4a8aaa', day:'Hari 35', label:'Cerita\n2 Tahun Lalu', tag:'Shared',
+    desc:'Warga tua di warung nyebut nama "Rendi" — katanya dia pergi mendadak dua tahun lalu setelah "lihat sesuatu." Tidak ada yang mau cerita lebih. MC iseng cari kontak Rendi lewat teman lama, dapat nomornya.' },
+  { id:'d42', x:738, y:310, r:20, color:'#0d2035', stroke:'#4a8aaa', day:'Hari 42', label:'Pak RT\nMulai Dekat', tag:'Shared',
+    desc:'Pak RT sering muncul "kebetulan" waktu MC lagi sendirian. Selalu ada alasan masuk akal. Nawarin bantuan, traktir makan. MC mulai nyaman — justru ini yang bahaya. Malam itu tidak ada bayangan Pak RT di bawah lampu.' },
+  { id:'d49', x:826, y:310, r:20, color:'#0d2035', stroke:'#4a8aaa', day:'Hari 49', label:'Ucok: Malam\nSebelum Semua', tag:'Shared',
+    desc:'Jam 2 pagi Ucok bangunin MC, ngeong ke arah luar jendela. MC lihat keluar — tidak ada apa-apa. Tapi ada bau keringat basi yang samar. Dan langkah berat yang menjauh. MC tutup jendela dan tidur lagi.' },
+
+  // ── BP1 ──
+  { id:'bp1', x:940, y:310, r:28, color:'#1a1a00', stroke:'#cccc44', day:'Hari 51', label:'⚑  BP1', tag:'Branch Point',
+    desc:'Pak RT menghubungi MC malam-malam: "Ada yang perlu aku tunjukkan."\n\nTiga pilihan:\n[A] Ikut sekarang tanpa tanya\n[B] Bilang mau hubungi Rendi dulu\n[C] Bilang iya, tapi diam-diam ikuti dari jauh' },
+
+  // ── JALUR A ──
+  { id:'a52', x:1075, y:145, r:18, color:'#200a0a', stroke:'#aa4444', day:'Hari 52', label:'Lokasi Rahasia', tag:'Jalur A',
+    desc:'Pak RT bawa MC ke bangunan tua di pinggir sawah. Di dalam ada beberapa warga yang MC tidak pernah lihat sebelumnya, dan Ustadz Faruq di pojok, sedang membaca sesuatu. MC dipersembahkan sebagai "calon baru."' },
+  { id:'a58', x:1168, y:145, r:18, color:'#200a0a', stroke:'#aa4444', day:'Hari 58', label:'Diperkenalkan\nke Jaringan', tag:'Jalur A',
+    desc:'MC mulai diajak rapat-rapat kecil. Informasinya dikasih sedikit-sedikit. Ucok semalam tidak mau masuk kamar. MC pikir kucing itu lagi ngambek — padahal Ucok sedang menunggu di luar selama 6 jam.' },
+  { id:'a63', x:1260, y:145, r:18, color:'#200a0a', stroke:'#aa4444', day:'Hari 63', label:'Ucok\nMenghilang', tag:'Jalur A',
+    desc:'MC pulang — Ucok tidak ada. Pintu sudah terkunci. Tidak ada bekas kabur. MC lapor Pak RT, Pak RT bilang "mungkin nyasar, nanti ketemu." Senyumannya tidak sampai ke mata.' },
+  { id:'bp2a', x:1355, y:145, r:24, color:'#1a0a00', stroke:'#cc8822', day:'Hari 67', label:'⚑  BP2-A', tag:'Branch Point',
+    desc:'Ustadz Faruq minta MC hadir di "acara malam ini." Rendi menghubungi di waktu yang sama — bilang jangan pergi ke mana pun.\n\nTiga pilihan:\n[B1] Kabur sekarang\n[B2] Hadapi Ustadz Faruq\n[B4] Abaikan Rendi, pergi ke acara' },
+
+  // ── JALUR B ──
+  { id:'b52', x:1075, y:310, r:18, color:'#0a200a', stroke:'#4a8a4a', day:'Hari 52', label:'Rendi Bicara', tag:'Jalur B',
+    desc:'Rendi mau cerita — tapi tidak lewat telepon. Minta ketemu di luar desa. MC berangkat dini hari, naik motor. Rendi tampak kurus dan gelisah. "Kamu harus hati-hati sama Pak RT dan ustadz itu."' },
+  { id:'b55', x:1158, y:310, r:18, color:'#0a200a', stroke:'#4a8a4a', day:'Hari 55', label:'Investigasi\nDimulai', tag:'Jalur B',
+    desc:'Rendi dan MC mulai kumpulkan bukti secara diam-diam. Ucok mulai ngeong ke arah tertentu tiap malam — MC sekarang mulai catat arahnya. Ada pola. Ada lokasi yang selalu sama.' },
+  { id:'b60', x:1245, y:310, r:18, color:'#0a200a', stroke:'#4a8a4a', day:'Hari 60', label:'Ucok Tunjukkan\nLokasi', tag:'Jalur B',
+    desc:'Ucok kabur tengah malam. MC ikutin — Ucok berhenti di depan gudang di balik masjid lama. Di dalam ada dokumen, foto warga yang "menghilang," ada nama-nama. Ini bukan pesugihan biasa.' },
+  { id:'b64', x:1330, y:310, r:18, color:'#0a200a', stroke:'#4a8a4a', day:'Hari 64', label:'Bukti\nTerkumpul', tag:'Jalur B',
+    desc:'Rendi dan MC punya cukup untuk dibawa ke luar desa. Tapi mereka tahu kalau ketahuan, tidak akan ada kesempatan kedua. Rencana tersusun. Ucok duduk anteng di atas tumpukan dokumen seolah ikut jaga.' },
+  { id:'bp2b', x:1420, y:310, r:24, color:'#001a00', stroke:'#44cc44', day:'Hari 67', label:'⚑  BP2-B', tag:'Branch Point',
+    desc:'Malam eksekusi rencana. Ada yang tahu — seseorang bocorkan ke Pak RT. Waktu sangat sempit.\n\nDua pilihan:\n[B1] Kabur sekarang bawa bukti\n[B2] Hadapi Ustadz Faruq langsung' },
+
+  // ── JALUR C ──
+  { id:'c52', x:1075, y:465, r:18, color:'#15082a', stroke:'#8a4aaa', day:'Hari 52', label:'MC Lihat\nRitual', tag:'Jalur C',
+    desc:'MC mengintip dari balik pohon. Yang dilihat: sebuah ritual yang tidak bisa MC deskripsikan dengan kata-kata yang dia punya. MC pulang. Tidak bisa tidur. Tidak bisa makan. Tidak bisa cerita ke siapapun.' },
+  { id:'c57', x:1168, y:465, r:18, color:'#15082a', stroke:'#8a4aaa', day:'Hari 57', label:'Mulai\nDisosiasi', tag:'Jalur C',
+    desc:'MC mulai ragu ingatan sendiri. Apakah benar-benar lihat itu? Beberapa detail berubah tiap diingat. Ucok masih ada — atau sudah dua hari tidak lihat Ucok? MC tidak yakin. Cek mangkuk makan Ucok: kosong dan bersih. Siapa yang bersihkan?' },
+  { id:'c62', x:1260, y:465, r:18, color:'#15082a', stroke:'#8a4aaa', day:'Hari 62', label:'Ucok:\nNyata atau?', tag:'Jalur C',
+    desc:'MC lihat Ucok di atas lemari. Pergi ambil makan. Kembali — Ucok tidak ada. Tidak ada jejak turun. Mangkuk belum disentuh. MC duduk di lantai selama dua jam. Mulai tidak bisa bedain mana yang terjadi dan mana yang dibayangkan.' },
+  { id:'bp2c', x:1355, y:465, r:24, color:'#1a0028', stroke:'#9944cc', day:'Hari 67', label:'⚑  BP2-C', tag:'Branch Point',
+    desc:'Ada yang ketuk pintu malam itu. Suara Pak RT. Atau bukan? MC tidak bisa pastikan.\n\nSatu pilihan:\n[B3] Freeze — tidak bisa bergerak sama sekali' },
+
+  // ── ENDINGS ──
+  { id:'end_bad1',   x:1505, y:80,  r:22, color:'#330000', stroke:'#ff4444', day:'Bad Ending 1',  label:'Terjebak\n(A→B1)', tag:'Bad Ending',
+    desc:'MC kabur tapi Pak RT sudah antisipasi semua jalur keluar. MC tidak pernah terlihat lagi di desa. Ucok ditemukan warga tiga hari kemudian — sendirian di depan kontrakan yang sudah dikunci dari luar.' },
+  { id:'end_bad2',   x:1505, y:210, r:22, color:'#330000', stroke:'#ff4444', day:'Bad Ending 2',  label:'Konfrontasi\nGagal (A→B2)', tag:'Bad Ending',
+    desc:'MC datangi Ustadz Faruq langsung tanpa bukti, tanpa backing. Ustadz Faruq tetap tenang — bahkan tersenyum. Tiga hari kemudian, warga desa percaya MC yang gila. MC dipulangkan ke Medan dalam kondisi yang tidak bisa dijelaskan.' },
+  { id:'end_sesat',  x:1505, y:340, r:22, color:'#1a0028', stroke:'#cc22cc', day:'Sesat Ending',  label:'Direkrut\n(A→B4)', tag:'Sesat Ending',
+    desc:'MC mengabaikan Rendi dan hadir di acara Ustadz Faruq. Malam itu MC resmi jadi bagian dari jaringan pesugihan — secara sukarela, atau sudah tidak bisa bedakan mana paksaan mana kemauan sendiri. Ucok tidak ditemukan. Selamanya.' },
+  { id:'end_secret', x:1505, y:280, r:22, color:'#002200', stroke:'#22cc44', day:'Secret Ending', label:'Kabur Bersama\nRendi (B→B1)', tag:'Secret Ending',
+    desc:'Rendi dan MC kabur membawa bukti ke luar desa sebelum fajar. Ustadz Faruq tidak bisa disentuh hukum secara langsung — tapi namanya mulai beredar di media daerah. Ending terbuka. Pahit, tapi ada lubang cahaya.' },
+  { id:'end_true',   x:1505, y:400, r:22, color:'#002200', stroke:'#44ff66', day:'True Ending',   label:'Kebenaran\nTerungkap (B→B2)', tag:'True Ending',
+    desc:'Dengan bukti yang Ucok tunjukkan dan rencana Rendi, MC konfrontasi Ustadz Faruq di depan warga. Pesugihan terbongkar penuh. Ustadz Faruq ditangkap. Pak RT kabur tapi tidak jauh. Desa Ngudilancur akhirnya bernapas.' },
+  { id:'end_skizo',  x:1505, y:480, r:22, color:'#100020', stroke:'#9944cc', day:'Skizo Ending',  label:'Runtuh\n(C→B3)', tag:'Skizo Ending',
+    desc:'MC freeze total. Tidak bisa membuka pintu, tidak bisa berteriak, tidak bisa memutuskan. Realitas runtuh dari dalam. Kita tidak pernah tahu apa yang sebenarnya terjadi malam itu — dan mungkin MC juga tidak. Ending paling psikologis, tanpa resolusi.' },
+];
+
+const EDGES = [
+  // Shared trunk
+  {from:'d1',   to:'d3',        color:'#4a8aaa', label:''},
+  {from:'d3',   to:'d7',        color:'#4a8aaa', label:''},
+  {from:'d7',   to:'d14',       color:'#4a8aaa', label:''},
+  {from:'d14',  to:'d21',       color:'#4a8aaa', label:''},
+  {from:'d21',  to:'d28',       color:'#4a8aaa', label:''},
+  {from:'d28',  to:'d35',       color:'#4a8aaa', label:''},
+  {from:'d35',  to:'d42',       color:'#4a8aaa', label:''},
+  {from:'d42',  to:'d49',       color:'#4a8aaa', label:''},
+  {from:'d49',  to:'bp1',       color:'#4a8aaa', label:''},
+  // BP1 branches
+  {from:'bp1',  to:'a52',       color:'#aa4444', label:'A'},
+  {from:'bp1',  to:'b52',       color:'#4a8a4a', label:'B'},
+  {from:'bp1',  to:'c52',       color:'#8a4aaa', label:'C'},
+  // Jalur A
+  {from:'a52',  to:'a58',       color:'#aa4444', label:''},
+  {from:'a58',  to:'a63',       color:'#aa4444', label:''},
+  {from:'a63',  to:'bp2a',      color:'#aa4444', label:''},
+  // Jalur B
+  {from:'b52',  to:'b55',       color:'#4a8a4a', label:''},
+  {from:'b55',  to:'b60',       color:'#4a8a4a', label:''},
+  {from:'b60',  to:'b64',       color:'#4a8a4a', label:''},
+  {from:'b64',  to:'bp2b',      color:'#4a8a4a', label:''},
+  // Jalur C
+  {from:'c52',  to:'c57',       color:'#8a4aaa', label:''},
+  {from:'c57',  to:'c62',       color:'#8a4aaa', label:''},
+  {from:'c62',  to:'bp2c',      color:'#8a4aaa', label:''},
+  // Endings A
+  {from:'bp2a', to:'end_bad1',  color:'#ff4444', label:'B1'},
+  {from:'bp2a', to:'end_bad2',  color:'#ff4444', label:'B2'},
+  {from:'bp2a', to:'end_sesat', color:'#cc22cc', label:'B4'},
+  // Endings B
+  {from:'bp2b', to:'end_secret',color:'#22cc44', label:'B1'},
+  {from:'bp2b', to:'end_true',  color:'#44ff66', label:'B2'},
+  // Ending C
+  {from:'bp2c', to:'end_skizo', color:'#9944cc', label:'B3'},
+];
+
+// ── RENDER ────────────────────────────────────────────────────────────────
+const NS = 'http://www.w3.org/2000/svg';
+const svg = document.getElementById('svg');
+const nodeMap = {};
+NODES.forEach(n => nodeMap[n.id] = n);
+
+function el(tag, attrs={}) {
+  const e = document.createElementNS(NS, tag);
+  for(const [k,v] of Object.entries(attrs)) e.setAttribute(k,v);
+  return e;
+}
+
+// Arrow markers
+const defs = el('defs');
+[...new Set(EDGES.map(e=>e.color))].forEach(c => {
+  const id = 'mk'+c.replace(/[^0-9a-f]/gi,'');
+  const mk = el('marker',{id,markerWidth:7,markerHeight:5,refX:5,refY:2.5,orient:'auto'});
+  mk.appendChild(el('polygon',{points:'0 0, 7 2.5, 0 5',fill:c}));
+  defs.appendChild(mk);
+});
+svg.appendChild(defs);
+
+// Edges
+const edgeG = el('g');
+const edgeEls = {};
+EDGES.forEach(edge => {
+  const A = nodeMap[edge.from], B = nodeMap[edge.to];
+  if(!A||!B) return;
+  const mid = 'mk'+edge.color.replace(/[^0-9a-f]/gi,'');
+  const g = el('g');
+  const mx = (A.x+B.x)/2;
+  const d = `M${A.x},${A.y} Q${mx},${A.y} ${B.x},${B.y}`;
+  const path = el('path',{d,fill:'none',stroke:edge.color,'stroke-width':1.8,'marker-end':`url(#${mid})`});
+  path.classList.add('edge-line','normal');
+  g.appendChild(path);
+  let lbl = null;
+  if(edge.label) {
+    lbl = el('text',{x:(A.x+B.x)/2,y:(A.y+B.y)/2-8,fill:edge.color});
+    lbl.classList.add('edge-label');
+    lbl.textContent = edge.label;
+    g.appendChild(lbl);
+  }
+  edgeG.appendChild(g);
+  edgeEls[edge.from+'>'+edge.to] = {path,lbl};
+});
+svg.appendChild(edgeG);
+
+// Nodes
+const nodeG = el('g');
+const nodeEls = {};
+NODES.forEach(n => {
+  const g = el('g');
+  g.classList.add('node-group');
+  g.style.setProperty('--nc', n.stroke);
+  g.dataset.id = n.id;
+
+  const circle = el('circle',{cx:n.x,cy:n.y,r:n.r,fill:n.color,stroke:n.stroke,'stroke-width':1.8});
+  circle.classList.add('node-circle');
+  g.appendChild(circle);
+
+  const dayT = el('text',{x:n.x,y:n.y-n.r-5});
+  dayT.classList.add('node-day');
+  dayT.textContent = n.day;
+  g.appendChild(dayT);
+
+  n.label.split('\n').forEach((line,i) => {
+    const t = el('text',{x:n.x,y:n.y+n.r+11+i*11});
+    t.classList.add('node-label');
+    t.textContent = line;
+    g.appendChild(t);
+  });
+
+  g.addEventListener('click', () => onNodeClick(n));
+  nodeG.appendChild(g);
+  nodeEls[n.id] = g;
+});
+svg.appendChild(nodeG);
+
+// ── INTERACTION ──────────────────────────────────────────────────────────
+let activeId = null;
+
+function getReachable(id) {
+  const nodes = new Set([id]), edges = new Set();
+  function goUp(nid) {
+    EDGES.forEach(e => { if(e.to===nid && !nodes.has(e.from)) { nodes.add(e.from); edges.add(e.from+'>'+e.to); goUp(e.from); }});
+  }
+  function goDown(nid) {
+    EDGES.forEach(e => { if(e.from===nid && !nodes.has(e.to)) { nodes.add(e.to); edges.add(e.from+'>'+e.to); goDown(e.to); }});
+  }
+  goUp(id); goDown(id);
+  return {nodes, edges};
+}
+
+function resetAll() {
+  Object.values(nodeEls).forEach(g => g.classList.remove('active','dimmed'));
+  Object.values(edgeEls).forEach(({path,lbl}) => {
+    path.classList.remove('dimmed','highlight'); path.classList.add('normal');
+    if(lbl) lbl.classList.remove('dimmed');
+  });
+}
+
+function onNodeClick(n) {
+  if(activeId === n.id) {
+    activeId = null; resetAll();
+    document.getElementById('info-tag').textContent = 'Node Detail';
+    document.getElementById('info-title').textContent = 'Klik node mana saja';
+    document.getElementById('info-desc').textContent = 'Setiap node adalah momen atau hari penting dalam cerita. Klik untuk lihat apa yang terjadi, dan lihat jalur yang terhubung.';
+    return;
+  }
+  activeId = n.id;
+  const {nodes:rn, edges:re} = getReachable(n.id);
+  Object.entries(nodeEls).forEach(([id,g]) => {
+    g.classList.remove('active','dimmed');
+    if(id===n.id) g.classList.add('active');
+    else if(!rn.has(id)) g.classList.add('dimmed');
+  });
+  Object.entries(edgeEls).forEach(([key,{path,lbl}]) => {
+    path.classList.remove('normal','dimmed','highlight');
+    path.classList.add(re.has(key)?'highlight':'dimmed');
+    if(lbl) { lbl.classList.remove('dimmed'); if(!re.has(key)) lbl.classList.add('dimmed'); }
+  });
+  document.getElementById('info-tag').textContent = n.tag;
+  document.getElementById('info-title').textContent = `${n.day} — ${n.label.replace('\n',' ')}`;
+  document.getElementById('info-desc').textContent = n.desc;
+}
+
+// ── DRAG TO SCROLL ────────────────────────────────────────────────────────
+const area = document.getElementById('graph-area');
+let drag=false, sx=0, ss=0;
+area.addEventListener('mousedown', e => { drag=true; sx=e.clientX; ss=area.scrollLeft; area.style.cursor='grabbing'; });
+window.addEventListener('mousemove', e => { if(drag) area.scrollLeft = ss-(e.clientX-sx); });
+window.addEventListener('mouseup', () => { drag=false; area.style.cursor='grab'; });
+</script>
+</body>
+</html>
