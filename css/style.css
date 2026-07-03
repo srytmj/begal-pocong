@@ -105,3 +105,36 @@ header{display:flex;align-items:center;gap:14px;padding:9px 16px;border-bottom:1
 .spoiler-open .char-role-spoiler{display:inline-block;}
 .char-card.mystery{border-color:#2a1a3a;}
 .char-card.mystery .char-top{border-bottom-color:#1e1030;}
+
+/* ── BLACKOUT NODE STAGES ── */
+/* Stage 0: d4 is fully hidden/mysterious */
+.blackout-0 .node-bg{opacity:.2;filter:blur(0.5px);}
+.blackout-0 .node-icon{opacity:.1;}
+.blackout-0 .node-day{opacity:.1;}
+.blackout-0 .node-lbl{opacity:.1;}
+/* Stage 1: first clue found */
+.blackout-1 .node-bg{opacity:.45;}
+.blackout-1 .node-icon{opacity:.35;}
+.blackout-1 .node-day{opacity:.35;}
+.blackout-1 .node-lbl{opacity:.35;}
+/* Stage 2: second clue */
+.blackout-2 .node-bg{opacity:.7;}
+.blackout-2 .node-icon{opacity:.6;}
+.blackout-2 .node-day{opacity:.6;}
+.blackout-2 .node-lbl{opacity:.6;}
+/* Stage 3: fully unlocked — full visibility + pulse */
+.blackout-3 .node-bg{animation:blackout-pulse 2.4s ease-in-out infinite;}
+@keyframes blackout-pulse{
+  0%,100%{filter:drop-shadow(0 0 4px #7a3aaa88);}
+  50%{filter:drop-shadow(0 0 16px #aa44dd) brightness(1.4);}
+}
+
+/* ── WAHYU PATH (D) ── */
+/* bp1 aware state: golden glow to indicate extra path revealed */
+.aware-unlocked .node-bg{
+  filter:drop-shadow(0 0 10px #aa44dd66) !important;
+  stroke:#aa44dd !important;
+}
+
+/* Wahyu ending badge in legend */
+.leg-dot.wahyu{background:#cc44ee;border-radius:0;transform:rotate(45deg);width:7px;height:7px;}

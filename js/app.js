@@ -54,8 +54,8 @@ function toggleSp(id, btn){
 // RENDER SVG
 // ══════════════════════════════════════════════════════════
 const NS     = 'http://www.w3.org/2000/svg';
-const SVG_W  = 3600;
-const SVG_H  = 760;
+const SVG_W  = 3400;
+const SVG_H  = 850;
 const svg    = document.getElementById('svg');
 svg.setAttribute('viewBox', `0 0 ${SVG_W} ${SVG_H}`);
 svg.setAttribute('width',  SVG_W);
@@ -84,9 +84,10 @@ svg.appendChild(defs);
 // Lane labels
 const laneG = mk('g');
 [
-  {x:2260, y:AY-42, t:'── JALUR A : Ikut Pak RT',    c:'#c84a4a33'},
-  {x:2260, y:BY-42, t:'── JALUR B : Hubungi Rendi',  c:'#4aaa4a33'},
-  {x:2260, y:CY-42, t:'── JALUR C : Ngintip',        c:'#a04acc33'},
+  {x:2250, y:AY-42,  t:'── JALUR A : Ikut Pak RT',    c:'#c84a4a33'},
+  {x:2250, y:WY-30,  t:'── JALUR D : Aware Path',     c:'#aa44dd33'},
+  {x:2250, y:BY-42,  t:'── JALUR B : Hubungi Rendi',  c:'#4aaa4a33'},
+  {x:2250, y:CY-42,  t:'── JALUR C : Ngintip',        c:'#a04acc33'},
 ].forEach(l=>{
   const t = mk('text',{x:l.x, y:l.y, fill:l.c, 'font-size':'10', 'letter-spacing':'1'});
   t.textContent = l.t;
@@ -121,7 +122,7 @@ EDGES.forEach(edge=>{
     g.appendChild(le);
   }
   edgeG.appendChild(g);
-  edgeEls[edge.f+'>'+edge.t] = {path, le};
+  edgeEls[edge.f+'>'+edge.t] = {path, le, g};
 });
 
 // ── Cross-branch switch edges ──
@@ -236,6 +237,36 @@ svg.appendChild(nodeG);
 // ══════════════════════════════════════════════════════════
 let activeId = null;
 
+// ══════════════════════════════════════════════════════════
+// BLACKOUT MECHANIC
+// ══════════════════════════════════════════════════════════
+const BLACKOUT_TRIGGERS  = ['d5', 'd21', 'b57'];
+const WAHYU_NODE_IDS     = ['d_w1', 'd_w2', 'd_w3', 'e_wahyu'];
+const WAHYU_EDGE_KEYS    = ['bp1>d_w1', 'd_w1>d_w2', 'd_w2>d_w3', 'd_w3>e_wahyu'];
+const BP1_BRANCH_KEYS    = ['bp1>a52', 'bp1>b52', 'bp1>c52'];
+
+let visitedTriggers  = new Set();
+let blackoutStage    = 0;  // 0 hidden → 3 fully unlocked
+
+function initWahyuPath(){
+  WAHYU_NODE_IDS.forEach(id => { if(nodeEls[id]) nodeEls[id].style.display = 'none'; });
+  WAHYU_EDGE_KEYS.forEach(k  => { if(edgeEls[k])  edgeEls[k].g.style.display = 'none'; });
+}
+
+function updateBlackoutNode(){
+  const el = nodeEls['d4'];
+  if(!el) return;
+  el.classList.remove('blackout-0','blackout-1','blackout-2','blackout-3');
+  el.classList.add('blackout-'+blackoutStage);
+}
+
+function revealWahyuPath(){
+  WAHYU_NODE_IDS.forEach(id => { if(nodeEls[id]) nodeEls[id].style.display = ''; });
+  WAHYU_EDGE_KEYS.forEach(k  => { if(edgeEls[k])  edgeEls[k].g.style.display = ''; });
+  BP1_BRANCH_KEYS.forEach(k  => { if(edgeEls[k])  edgeEls[k].g.style.display = 'none'; });
+  if(nodeEls['bp1']) nodeEls['bp1'].classList.add('aware-unlocked');
+}
+
 /**
  * Hitung semua node & edge yang terhubung ke id (naik + turun).
  * Juga include node tujuan cross-branch switch agar ikut highlight.
@@ -310,6 +341,14 @@ function jumpToNode(id, edgeInfo){
 }
 
 function onNodeClick(n){
+  // Blackout trigger check
+  if(BLACKOUT_TRIGGERS.includes(n.id) && !visitedTriggers.has(n.id)){
+    visitedTriggers.add(n.id);
+    blackoutStage = visitedTriggers.size;
+    updateBlackoutNode();
+    if(blackoutStage >= 3) revealWahyuPath();
+  }
+
   if(activeId === n.id){
     activeId = null;
     resetAll();
@@ -396,3 +435,5 @@ window.addEventListener('mouseup',  ()=>{ drag=false; ga.style.cursor='grab'; })
 
 // Init
 applyZoom(zoom);
+initWahyuPath();
+updateBlackoutNode();
