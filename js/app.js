@@ -54,7 +54,7 @@ function toggleSp(id, btn){
 // RENDER SVG
 // ══════════════════════════════════════════════════════════
 const NS     = 'http://www.w3.org/2000/svg';
-const SVG_W  = 3700;
+const SVG_W  = 3600;
 const SVG_H  = 760;
 const svg    = document.getElementById('svg');
 svg.setAttribute('viewBox', `0 0 ${SVG_W} ${SVG_H}`);

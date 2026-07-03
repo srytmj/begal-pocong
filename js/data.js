@@ -103,223 +103,187 @@ const NODES=[
    desc:'MC tiba naik motor dari Medan. Kontrakan sempit di gang dalam — murah, sepi. Ucok langsung keluar dari carrier dan inspeksi tiap sudut. Desa terasa tenang, tapi MC terlalu capek untuk peduli.'},
 
   // MERGED: d2 + d3
-  {id:'d2',  x:200,  y:SY, r:17, ...P.sh, day:'Hari 2',  icon:'📦', label:'Kerja &\nPak RT',
+  {id:'d2',  x:230,  y:SY, r:17, ...P.sh, day:'Hari 2',  icon:'📦', label:'Kerja &\nPak RT',
    tag:'Shared', title:'Hari 2 — Kerja Pertama & Ketemu Pak RT',
    desc:'MC mulai antar paket. Rute pertama melewati jalan sempit di belakang masjid lama. Satu alamat di ujung desa — tidak ada yang buka pintu, tapi paket diterima.\n\nSore harinya, Pak RT datang sendiri ke kontrakan, bawa pisang goreng. Senyumnya lebar, bicaranya halus. "Kalau ada apa-apa, ke saya dulu ya, Mas." Ucok ngumpet di bawah kasur selama Pak RT di dalam — satu-satunya kali itu terjadi.'},
 
-  {id:'d4',  x:310,  y:SY, r:20, ...P.d4, day:'Hari 3',  icon:'💀', label:'Blackout\n[TERSEMBUNYI]',
+  {id:'d4',  x:370,  y:SY, r:20, ...P.d4, day:'Hari 3',  icon:'💀', label:'Blackout\n[TERSEMBUNYI]',
    tag:'Malam Ketiga', title:'Hari 3 — Malam yang MC Tidak Ingat',
    desc:'MC tidak punya memori malam ini.\n\nYang MC tidak tahu: Wahyu merasuki tubuhnya malam itu, dan membantai beberapa anggota kultus di gudang. MC bangun jam 6 pagi dalam kondisi normal — sedikit pusing, tapi tidak ada yang terlihat aneh.\n\n[Node tersembunyi dari perspektif MC. Player mengetahuinya secara retroaktif.]'},
 
-  {id:'d5',  x:420,  y:SY, r:17, ...P.sh, day:'Hari 4',  icon:'👻', label:'Gosip &\nBlackout Clue',
+  {id:'d5',  x:510,  y:SY, r:17, ...P.sh, day:'Hari 4',  icon:'👻', label:'Gosip &\nBlackout Clue',
    tag:'Shared', title:'Hari 4 — Gosip Emak-Emak + Clue Pertama',
    desc:'MC dengar gosip di gang: "Eh, kemarin malem ada kejadian di gudang belakang sawah, serem banget..."\n\nMC dalam hati: "Wah serem juga ya. Eh... kemarin aku ngapain ya? Kok kayak lupa gitu. Yaudah lah."\n\nIni clue pertama yang player temukan, tapi MC abaikan begitu saja. Ucok menatap MC selama 4 detik lalu pergi.'},
 
-  {id:'d6',  x:480,  y:SY, r:15, ...P.sh, day:'Hari 5',  icon:'🛒', label:'Tukang Sayur\n#1',
+  {id:'d6',  x:600,  y:SY, r:15, ...P.sh, day:'Hari 5',  icon:'🛒', label:'Tukang Sayur\n#1',
    tag:'Shared', title:'Hari 5 — Tukang Sayur Pagi (Pertemuan Pertama)',
    desc:'Pagi-pagi MC lewat gang, ada tukang sayur berhenti. Ibu Rendi perkenalkan diri — ramah, ketawa lepas, nanya MC baru pindah dari mana.\n\nDia sempet bilang "oh, pengajian Pak Ustadz enak ikut, warga sini kompak semua" dengan nada yang sangat casual.\n\n[Belum ada red flag. Player hanya diminta kenali wajahnya.]'},
 
-  {id:'d7',  x:540,  y:SY, r:17, ...P.sh, day:'Hari 6',  icon:'🐱', label:'Ucok\nPertama Aneh',
-   tag:'Shared', title:'Hari 6 — Ucok Ngeong ke Dinding',
-   desc:'Jam 11 malam, Ucok ngeong keras ke arah tembok barat. Bukan ngeong minta makan — ini berbeda. MC ketuk tembok, kosong. Ucok berhenti, balik ke kasur, manja seperti tidak ada yang terjadi.'},
+  // MERGED: d7 + d10
+  {id:'d7',  x:750,  y:SY, r:17, ...P.sh, day:'Hari 6', icon:'🌙', label:'Ucok Aneh &\nKiriman Malam',
+   tag:'Shared', title:'Hari 6–8 — Ucok Ngeong ke Dinding & Kiriman Malam',
+   desc:'Hari 6, jam 11 malam, Ucok ngeong keras ke tembok barat. Bukan ngeong minta makan — ini berbeda. MC ketuk tembok, kosong. Ucok berhenti, balik ke kasur, manja seperti tidak ada yang terjadi.\n\nHari 8, tetangga cerita soal "kiriman malam" — paket yang muncul di depan pintu sebelum subuh tanpa jejak kurir. Sudah setahun lebih. Warga sudah biasa. MC tertawa, pikir itu gosip.'},
 
-  {id:'d10', x:630,  y:SY, r:17, ...P.sh, day:'Hari 8',  icon:'🌙', label:'"Kiriman\nMalam"',
-   tag:'Shared', title:'Hari 8 — Kiriman yang Tidak Masuk Akal',
-   desc:'Tetangga cerita soal "kiriman malam" — paket-paket yang muncul di depan pintu sebelum subuh tanpa jejak kurir. Sudah setahun lebih. Warga sudah biasa. MC tertawa, pikir itu gosip.'},
-
-  {id:'d14', x:730,  y:SY, r:20, ...P.sh, day:'Hari 10', icon:'🕌', label:'Pengajian &\nUstadz Faruq',
+  {id:'d14', x:890,  y:SY, r:20, ...P.sh, day:'Hari 10', icon:'🕌', label:'Pengajian &\nUstadz Faruq',
    tag:'Shared', title:'Hari 10 — Pengajian Pertama, Ketemu Ustadz Faruq',
    desc:'MC diajak Pak RT ke pengajian warga. Ustadz Faruq — suara datar, pakaian putih, semua orang hormat. Kecuali: suhu ruangan turun tiap Ustadz Faruq berdiri, dan Ustadz Faruq tidak pernah minum minuman yang dihidangkan.'},
 
-  {id:'d17', x:830,  y:SY, r:17, ...P.sh, day:'Hari 12', icon:'📫', label:'Paket ke\nAlamat Sama',
-   tag:'Shared', title:'Hari 12 — Paket yang Dua Kali Diantar',
-   desc:'MC dapat paket ke alamat yang sama seperti kemarin. Tapi sistem bilang belum diantar. MC antar lagi — kali ini pintu dibuka oleh orang yang berbeda, tapi dengan wajah yang sama persis seperti kemarin.'},
+  // MERGED: d17 + d20
+  {id:'d17', x:1030, y:SY, r:17, ...P.sh, day:'Hari 12', icon:'📫', label:'Paket Ganjil &\nTukang Sayur',
+   tag:'Shared', title:'Hari 12–13 — Paket Ganjil & Tukang Sayur',
+   desc:'Hari 12, MC dapat paket ke alamat yang sama seperti kemarin. Sistem bilang belum diantar. MC antar lagi — pintu dibuka orang yang berbeda, tapi wajahnya sama persis.\n\nHari 13, Ibu Rendi ada di gang. Gibahan soal paket aneh subuh-subuh — Ibu Rendi nyeletuk: "Ya warga sini sih udah biasa, mungkin kiriman orang yang kerja malam." Senyum ringan, ganti topik. Tapi ada yang off: satu ibu mau lanjut cerita, Ibu Rendi sentuh lengannya pelan, dan dia diam.\n\n[Clue terselubung: Ibu Rendi tahu sesuatu.]'},
 
-  {id:'d20', x:890,  y:SY, r:15, ...P.sh, day:'Hari 13', icon:'🛒', label:'Tukang Sayur\n#2',
-   tag:'Shared', title:'Hari 13 — Tukang Sayur Pagi (Pertemuan Kedua)',
-   desc:'MC lewat lagi, Ibu Rendi ada. Gibahan lebih panjang — soal "paket aneh yang sering datang subuh-subuh."\n\nIbu Rendi nyeletuk: "Ya warga sini sih udah biasa, mungkin kiriman orang yang kerja malam." Senyum ringan, ganti topik ke harga cabai.\n\nTapi ada yang off: salah satu ibu mau lanjut cerita — Ibu Rendi sentuh lengannya pelan, dan dia diam.\n\n[Clue terselubung: Ibu Rendi tahu sesuatu.]'},
+  // MERGED: d21 + d24
+  {id:'d21', x:1170, y:SY, r:17, ...P.sh, day:'Hari 14', icon:'🗺️', label:'Rute Hilang &\nKain Kafan',
+   tag:'Shared', title:'Hari 14–15 — Rute Hilang & Kain Kafan',
+   desc:'Hari 14, paket harus diantar ke koordinat yang tidak muncul di aplikasi. MC ikut insting, ketemu jalan kecil di balik ladang. Rumahnya ada. Ucok di carrier tidak mau diam sepanjang jalan pulang.\n\nHari 15, MC bangun — Ucok naruh sobekan kain putih linen di depan pintu kamar. MC buang. Malamnya Ucok bawa lagi — sobekan yang sama, atau yang berbeda, MC tidak yakin.'},
 
-  {id:'d21', x:945,  y:SY, r:17, ...P.sh, day:'Hari 14', icon:'🗺️', label:'Rute\nTidak Ada',
-   tag:'Shared', title:'Hari 14 — Rute yang Tidak Ada di Maps',
-   desc:'Paket harus diantar ke koordinat yang tidak muncul di aplikasi. MC ikut insting, ketemu jalan kecil di balik ladang. Rumahnya ada. Tapi sepanjang jalan pulang, Ucok di carrier tidak mau diam.'},
+  // MERGED: d28 + d31
+  {id:'d28', x:1310, y:SY, r:18, ...P.sh, day:'Hari 17', icon:'🚪', label:'Peringatan Ucok\n& Mimpi Buruk',
+   tag:'Shared', title:'Hari 17–18 — Peringatan Ucok & Mimpi Buruk',
+   desc:'Hari 17, Pak RT undang MC makan siang. Di depan pagar, Ucok bulu berdiri penuh. MC tinggal Ucok di luar. Selama makan, MC dengar Ucok ngeong dua kali — lirih, seperti peringatan.\n\nMalam Hari 18, mimpi: MC berdiri di tengah desa. Semua lampu mati. Ada sesuatu yang bergerak di balik setiap jendela. MC mau lari tapi kakinya tidak bergerak. Ucok ada di belakangnya, ngeong keras, tapi suaranya makin menjauh. MC bangun jam 3.17.'},
 
-  {id:'d24', x:1040, y:SY, r:17, ...P.sh, day:'Hari 15', icon:'🧣', label:'Ucok Bawa\nKain Kafan',
-   tag:'Shared', title:'Hari 15 — Ucok Bawa Sobekan Kain Putih',
-   desc:'MC bangun, Ucok naruh sobekan kain putih linen di depan pintu kamar. MC buang ke tempat sampah. Malamnya Ucok bawa lagi — sobekan yang sama, atau yang berbeda, MC tidak yakin.'},
+  // MERGED: d35 + d37
+  {id:'d35', x:1450, y:SY, r:17, ...P.sh, day:'Hari 20', icon:'🗣️', label:'Nama Rendi\n& Red Flag',
+   tag:'Shared', title:'Hari 20–21 — Nama Rendi & Red Flag',
+   desc:'Hari 20, di warung kopi, warga tua slip nama "Rendi." Langsung diam, ganti topik. Satu warga kasih kertas kecil diam-diam: nomor HP. "Kalau mau tahu yang sebenarnya."\n\nHari 21, MC iseng sebut nama itu ke Ibu Rendi di gang. Senyumnya tidak hilang, tapi ada yang bergeser. "Iya. Tapi dia sudah lama tidak di sini. Kamu kenal dia dari mana?" Nada terlalu datar. Tangannya mencengkeram tas belanjaan lebih erat.\n\n[Red flag terkonfirmasi.]'},
 
-  {id:'d28', x:1140, y:SY, r:20, ...P.sh, day:'Hari 17', icon:'🚪', label:'Ucok: Bulu\nBerdiri',
-   tag:'Shared', title:'Hari 17 — Ucok Menolak Masuk Rumah Pak RT',
-   desc:'Pak RT undang MC makan siang. Di depan pagar Pak RT, Ucok bulu berdiri penuh. MC tinggal Ucok di luar. Selama makan, MC dengar Ucok ngeong dua kali — lirih, seperti peringatan.'},
+  // MERGED: d38 + d42
+  {id:'d38', x:1590, y:SY, r:17, ...P.sh, day:'Hari 22', icon:'👤', label:'Nama Tanpa Wajah\n& Pak RT',
+   tag:'Shared', title:'Hari 22–23 — Nama Tanpa Wajah & Pak RT',
+   desc:'Hari 22, MC mulai hitung: dalam tiga minggu, ada 4 nama yang disebut warga tapi tidak ada orangnya. Semua "sudah pindah." Semua perantau.\n\nHari 23, MC mulai sadar: Pak RT muncul setiap kali MC sendirian. Selalu ada alasan masuk akal. Malam itu MC iseng lihat ke bawah — tidak ada bayangan Pak RT di bawah lampu. MC tutup tirai.'},
 
-  {id:'d31', x:1240, y:SY, r:17, ...P.sh, day:'Hari 18', icon:'💤', label:'Mimpi\nBuruk Pertama',
-   tag:'Shared', title:'Hari 18 — Mimpi yang Terlalu Nyata',
-   desc:'Mimpi: MC berdiri di tengah desa tengah malam. Semua lampu mati. Ada sesuatu yang bergerak di balik setiap jendela. MC mau lari tapi kakinya tidak bergerak. Ucok ada di belakangnya, ngeong keras, tapi suaranya makin menjauh. MC bangun, jam 3.17.'},
+  // MERGED: d45 + d48
+  {id:'d45', x:1730, y:SY, r:17, ...P.sh, day:'Hari 24', icon:'🖼️', label:'Foto Korban &\nPertanyaan Pak RT',
+   tag:'Shared', title:'Hari 24–25 — Foto Korban & Pertanyaan Pak RT',
+   desc:'Hari 24, MC bersih-bersih, temukan foto di laci meja: foto warga desa, ada yang MC kenal. Di balik foto, nama dan tanggal. Beberapa dari mereka adalah "yang sudah pergi." Foto ini tertinggal dari penghuni sebelumnya.\n\nHari 25, Pak RT tanya santai: "Keluarganya ada yang tahu Mas tinggal di sini?" MC jawab tidak terlalu. Pak RT angguk. "Bagus, berarti betahnya di sini aja ya." MC baru sadar artinya dua hari kemudian.'},
 
-  {id:'d35', x:1340, y:SY, r:17, ...P.sh, day:'Hari 20', icon:'🗣️', label:'Nama\n"Rendi"',
-   tag:'Shared', title:'Hari 20 — Nama yang Tidak Boleh Disebut',
-   desc:'Di warung kopi, warga tua slip nama "Rendi." Langsung diam, ganti topik. Tapi salah satu warga kasih kertas kecil diam-diam: nomor HP. "Kalau mau tahu yang sebenarnya."'},
-
-  {id:'d37', x:1395, y:SY, r:15, ...P.sh, day:'Hari 21', icon:'🛒', label:'Tukang Sayur\n#3',
-   tag:'Shared', title:'Hari 21 — Tukang Sayur Pagi (Pertemuan Ketiga)',
-   desc:'MC iseng sebut nama Rendi — "Oh, Ibu kenal Rendi? Anaknya kan Ibu ya?"\n\nIbu Rendi berhenti sebentar. Senyumnya tidak hilang, tapi ada sesuatu yang bergeser. "Iya. Tapi dia sudah lama tidak di sini. Kamu kenal dia dari mana?" Nada pertanyaannya sedikit terlalu datar.\n\nTopik langsung dia alihkan. Tapi MC bisa lihat tangannya mencengkeram tas belanjaan sedikit lebih erat.\n\n[Red flag terkonfirmasi.]'},
-
-  {id:'d38', x:1450, y:SY, r:17, ...P.sh, day:'Hari 22', icon:'👤', label:'Warga yang\nTidak Ada',
-   tag:'Shared', title:'Hari 22 — Nama Tanpa Wajah',
-   desc:'Warga sering sebut nama orang yang kalau MC tanya — "Oh, dia sudah pindah." Atau diam. MC mulai hitung: dalam tiga minggu, ada 4 nama yang disebut tapi tidak ada orangnya. Semua perantau.'},
-
-  {id:'d42', x:1545, y:SY, r:17, ...P.sh, day:'Hari 23', icon:'☕', label:'Pak RT\nMakin Dekat',
-   tag:'Shared', title:'Hari 23 — Pak RT Selalu Ada',
-   desc:'MC mulai sadar: Pak RT muncul setiap kali MC sendirian. Selalu ada alasan masuk akal. Malam itu MC iseng lihat ke bawah — tidak ada bayangan Pak RT di bawah lampu. MC tutup tirai.'},
-
-  {id:'d45', x:1645, y:SY, r:17, ...P.sh, day:'Hari 24', icon:'🖼️', label:'Foto di\nLaci',
-   tag:'Shared', title:'Hari 24 — Foto yang Tertinggal',
-   desc:'MC bersih-bersih, temukan foto di laci meja: foto warga desa, ada yang MC kenal. Di balik foto, nama dan tanggal. Beberapa dari mereka adalah "yang sudah pergi." Foto ini tertinggal dari penghuni sebelumnya.'},
-
-  {id:'d48', x:1745, y:SY, r:17, ...P.sh, day:'Hari 25', icon:'📱', label:'Pak RT Tanya\nKeluarga',
-   tag:'Shared', title:'Hari 25 — Pertanyaan yang Tidak Lazim',
-   desc:'Pak RT tanya santai: "Mas dari Medan, keluarganya ada yang tahu Mas tinggal di sini?" MC jawab tidak terlalu. Pak RT angguk. Tersenyum. "Bagus, berarti betahnya di sini aja ya." MC baru sadar artinya dua hari kemudian.'},
-
-  {id:'d49', x:1845, y:SY, r:17, ...P.sh, day:'Hari 26', icon:'🌃', label:'Ucok: Malam\nSebelum Semua',
-   tag:'Shared', title:'Hari 26 — Jam 2 Pagi',
-   desc:'Ucok bangunkan MC jam 2 pagi — ngeong ke jendela. MC lihat keluar: gang kosong. Tapi ada bau keringat basi yang samar, ada langkah berat yang menjauh, dan tidak ada bayangan yang bergerak meski lampu gang menyala.'},
-
-  {id:'d50', x:1945, y:SY, r:17, ...P.sh, day:'Hari 27', icon:'📵', label:'Telpon Rendi\nTidak Diangkat',
-   tag:'Shared', title:'Hari 27 — Coba Hubungi Rendi',
-   desc:'MC akhirnya coba nomor di kertas. Berdering lama. Tidak diangkat. MC kirim WA — centang satu. Jam 11.57 malam, Rendi balas: "Jangan angkat kalau Pak RT telpon malam ini. Jangan pergi ke mana pun."'},
+  // MERGED: d49 + d50
+  {id:'d49', x:1870, y:SY, r:17, ...P.sh, day:'Hari 26', icon:'🌃', label:'Malam Sebelum\n& WA Rendi',
+   tag:'Shared', title:'Hari 26–27 — Malam Sebelum & WA Rendi',
+   desc:'Hari 26, Ucok bangunkan MC jam 2 pagi — ngeong ke jendela. MC lihat keluar: gang kosong. Tapi ada bau keringat basi yang samar, langkah berat yang menjauh, dan tidak ada bayangan yang bergerak meski lampu gang menyala.\n\nHari 27, MC akhirnya coba nomor di kertas. Berdering lama. Tidak diangkat. MC kirim WA — centang satu. Jam 11.57 malam, Rendi balas: "Jangan angkat kalau Pak RT telpon malam ini. Jangan pergi ke mana pun."'},
 
   // ── BRANCH POINT 1 ──
-  {id:'bp1', x:2090, y:SY, r:30, ...P.bp, day:'Hari 28', icon:'⚑', label:'BRANCH\nPOINT 1',
+  {id:'bp1', x:2050, y:SY, r:30, ...P.bp, day:'Hari 28', icon:'⚑', label:'BRANCH\nPOINT 1',
    tag:'Branch Point', title:'Hari 28 — Branch Point 1',
    desc:'Tengah malam. Pak RT telpon: "Ada yang perlu aku tunjukkan ke Mas. Sekarang, bisa?"\n\n[A] Ikut sekarang — matikan HP, pergi bersama Pak RT\n[B] Bilang tunggu dulu — balas WA Rendi, koordinasi dulu\n[C] Bilang iya ke Pak RT — tapi diam-diam ikuti dari jauh'},
 
   // ── JALUR A ──
-  {id:'a52', x:2280, y:AY, r:18, ...P.a, day:'Hari 29', icon:'🏚️', label:'Lokasi\nRahasia',
+  {id:'a52', x:2250, y:AY, r:18, ...P.a, day:'Hari 29', icon:'🏚️', label:'Lokasi\nRahasia',
    tag:'Jalur A', title:'A · Hari 29 — Gudang di Balik Sawah',
    desc:'Pak RT bawa MC ke bangunan tua di pinggir sawah. Di dalam: beberapa warga yang tidak pernah MC lihat, cahaya lilin, dan Ustadz Faruq di pojok. MC diperkenalkan. Semua senyum.'},
 
-  {id:'a54', x:2413, y:AY, r:17, ...P.a, day:'Hari 30', icon:'🚶', label:'Disuruh\nTunggu Dulu',
-   tag:'Jalur A', title:'A · Hari 30 — MC Belum Boleh Masuk',
-   desc:'Ada pertemuan lagi, tapi MC disuruh tunggu di luar. 40 menit. Dari celah pintu, ada suara lantunan yang MC tidak kenal bahasanya. Ucok di kontrakan ngeong terus — tetangga komplain keesokan harinya.'},
+  // MERGED: a54 + a56
+  {id:'a54', x:2410, y:AY, r:17, ...P.a, day:'Hari 30', icon:'🕯️', label:'Menunggu &\nLihat Prosesi',
+   tag:'Jalur A', title:'A · Hari 30–31 — Menunggu & Lihat Prosesi',
+   desc:'Hari 30, ada pertemuan lagi tapi MC disuruh tunggu di luar. 40 menit. Dari celah pintu, ada suara lantunan yang MC tidak kenal bahasanya. Ucok di kontrakan ngeong terus — tetangga komplain keesokan harinya.\n\nHari 31, MC akhirnya diajak masuk saat prosesi berlangsung. Ada yang terlihat seperti doa, ada yang terlihat seperti serah-terima sesuatu. MC berdiri di belakang, tidak bertanya. Pulang jam 2 pagi.'},
 
-  {id:'a56', x:2547, y:AY, r:17, ...P.a, day:'Hari 31', icon:'🕯️', label:'Lihat\nProsesi',
-   tag:'Jalur A', title:'A · Hari 31 — Pertama Kali Melihat Prosesi',
-   desc:'MC akhirnya diajak masuk saat prosesi berlangsung. Ada yang terlihat seperti doa, ada yang terlihat seperti serah-terima sesuatu. MC berdiri di belakang, tidak bertanya. Pulang jam 2 pagi.'},
-
-  {id:'a58', x:2680, y:AY, r:17, ...P.a, day:'Hari 32', icon:'🤝', label:'Diperkenalkan\nResmi',
+  {id:'a58', x:2570, y:AY, r:17, ...P.a, day:'Hari 32', icon:'🤝', label:'Diperkenalkan\nResmi',
    tag:'Jalur A', title:'A · Hari 32 — Diperkenalkan ke Semua Anggota',
    desc:'Ustadz Faruq panggil MC maju. MC dapat amplop — uang lebih dari gaji kurir sebulan. "Tanda terima kasih sudah percaya." MC tidak nanya lebih lanjut.\n\n⚠ [Branch Switch tersedia: A→C — kalau MC melihat detail prosesi yang terlalu disturbing, nalar mulai retak → geser ke Jalur C]'},
 
   // MERGED: a60 + a62
-  {id:'a60', x:2815, y:AY, r:17, ...P.a, day:'Hari 33', icon:'👁️', label:'Tugas &\nDiawasi',
+  {id:'a60', x:2730, y:AY, r:17, ...P.a, day:'Hari 33', icon:'👁️', label:'Tugas &\nDiawasi',
    tag:'Jalur A', title:'A · Hari 33 — Tugas Pertama & Mulai Diawasi',
    desc:'MC dapat tugas: antar "kiriman khusus" ke titik tertentu, tidak boleh dibuka. MC antar. Waktu MC kembali, Ucok tidak mau didekati MC selama dua jam penuh.\n\nSetelah itu MC mulai sadar ada yang mengikuti. Bukan Pak RT. Setiap kali MC menoleh, tidak ada siapapun — tapi ada bau keringat basi yang sama seperti malam Hari 26.'},
 
-  {id:'a63', x:2950, y:AY, r:20, ...P.a, day:'Hari 34', icon:'❓', label:'Ucok\nMenghilang',
+  {id:'a63', x:2890, y:AY, r:20, ...P.a, day:'Hari 34', icon:'❓', label:'Ucok\nMenghilang',
    tag:'Jalur A', title:'A · Hari 34 — Ucok Tidak Ada',
    desc:'MC pulang malam. Pintu terkunci dari dalam. Ucok tidak ada. Tidak ada bekas kabur. MC lapor Pak RT — Pak RT bilang "paling nyasar, nanti balik." Senyumannya tidak sampai ke mata.\n\n⚠ [Branch Switch tersedia: A→B — kalau MC akhirnya balas WA lama Rendi setelah Ucok hilang → geser ke Jalur B versi terlambat]'},
 
-  {id:'a65', x:3080, y:AY, r:17, ...P.a, day:'Hari 36', icon:'🔦', label:'Ketemu Rendi\nTidak Sengaja',
+  {id:'a65', x:3050, y:AY, r:17, ...P.a, day:'Hari 36', icon:'🔦', label:'Ketemu Rendi\nTidak Sengaja',
    tag:'Jalur A', title:'A · Hari 36 — Rendi Muncul Tidak Terduga',
    desc:'MC lagi cari Ucok di pasar pagi. Ada yang menarik lengan MC dari belakang — Rendi. Kurus, mata merah. "Aku sudah amati kamu dari jauh. Kamu sudah masuk terlalu dalam. Malam ini terakhir kesempatanmu keluar."'},
 
-  {id:'bp2a',x:3215, y:AY, r:28, ...P.b2a, day:'Hari 37', icon:'⚑', label:'BP2-A',
+  {id:'bp2a',x:3230, y:AY, r:28, ...P.b2a, day:'Hari 37', icon:'⚑', label:'BP2-A',
    tag:'Branch Point', title:'Hari 37 — Branch Point 2 (Jalur A)',
    desc:'Ustadz Faruq undang MC ke "acara penting malam ini." Rendi kirim WA terakhir: "Ini malam terakhir."\n\n[B1] Kabur — tinggalkan semua, pergi bersama Rendi\n[B2] Konfrontasi — hadapi Ustadz Faruq langsung\n[B4] Abaikan Rendi — hadir di acara Ustadz Faruq'},
 
   // ── JALUR B ──
-  {id:'b52', x:2280, y:BY, r:18, ...P.b, day:'Hari 29', icon:'📞', label:'Rendi\nAngkat Telepon',
-   tag:'Jalur B', title:'B · Hari 29 — Rendi Akhirnya Bicara',
-   desc:'MC balas WA Rendi, tidak jadi pergi dengan Pak RT. Rendi minta ketemu langsung di luar desa, jam 6 pagi sebelum pasar buka.'},
+  // MERGED: b52 + b53
+  {id:'b52', x:2250, y:BY, r:18, ...P.b, day:'Hari 29', icon:'🤫', label:'Rendi\nAkhirnya Bicara',
+   tag:'Jalur B', title:'B · Hari 29–30 — Rendi Akhirnya Bicara',
+   desc:'MC balas WA Rendi, tidak jadi pergi dengan Pak RT. Rendi minta ketemu langsung di luar desa, jam 6 pagi sebelum pasar buka.\n\nRendi datang duluan. Tampak kurus, gelisah. "Dua tahun lalu aku hampir jadi korban kesekian. Yang mereka lakukan di malam-malam itu — itu bukan sekedar ritual biasa." Rendi kasih nama-nama. Semua perantau.'},
 
-  {id:'b53', x:2414, y:BY, r:17, ...P.b, day:'Hari 30', icon:'🤫', label:'Pertemuan\nDi Luar Desa',
-   tag:'Jalur B', title:'B · Hari 30 — Rendi Cerita Semuanya',
-   desc:'Rendi datang duluan. Tampak kurus, gelisah. "Dua tahun lalu aku hampir jadi korban kesekian. Yang mereka lakukan di malam-malam itu — itu bukan sekedar ritual biasa." Rendi kasih nama-nama. Semua perantau.'},
-
-  {id:'b55', x:2548, y:BY, r:17, ...P.b, day:'Hari 31', icon:'🗂️', label:'Mulai\nMapping',
+  {id:'b55', x:2410, y:BY, r:17, ...P.b, day:'Hari 31', icon:'🗂️', label:'Mulai\nMapping',
    tag:'Jalur B', title:'B · Hari 31 — MC dan Rendi Mulai Mapping',
    desc:'Rendi dan MC susun peta: siapa saja yang hilang, kapan, pola lokasinya. Semua korban tinggal sendirian. Semua tidak punya keluarga yang tahu mereka di sana. MC diam: "Pak RT tanya soal keluargaku kemarin."'},
 
-  {id:'b57', x:2682, y:BY, r:17, ...P.b, day:'Hari 32', icon:'📋', label:'Pola\nKorban',
+  {id:'b57', x:2570, y:BY, r:17, ...P.b, day:'Hari 32', icon:'📋', label:'Pola\nKorban',
    tag:'Jalur B', title:'B · Hari 32 — Pola yang Terlalu Rapi',
    desc:'Dari catatan Rendi, korban selalu hilang antara minggu ke-5 sampai ke-6. MC sekarang ada di Hari 32 — zona merah.\n\n⚠ [Branch Switch tersedia: B→C — kalau MC tidak sengaja melihat ritual saat investigasi → geser ke Jalur C]\n\n⚠ [Momen kunci: Rendi melihat MC "ngobrol sendiri" dan tanya "Lo ngobrol sama siapa tadi?"]'},
 
   // MERGED: b60 + b62
-  {id:'b60', x:2816, y:BY, r:20, ...P.b, day:'Hari 33', icon:'🔓', label:'Ucok & Isi\nGudang',
+  {id:'b60', x:2730, y:BY, r:20, ...P.b, day:'Hari 33', icon:'🔓', label:'Ucok & Isi\nGudang',
    tag:'Jalur B', title:'B · Hari 33 — Ucok Tunjukkan Gudang',
    desc:'Tengah malam Ucok kabur dari jendela. MC kejar. Ucok berlari lurus ke gang belakang masjid lama, berhenti di depan gudang kecil. Ucok duduk di depannya. Tidak mau pergi.\n\nRendi bantu buka gembok. Di dalam: dokumen, foto, ID card orang-orang yang "sudah pergi." Ada buku catatan — nama, tanggal kedatangan, tanggal "selesai." Ada nama MC. Dengan tanggal yang belum terisi.\n\n⚠ [Branch Switch tersedia: B→A — kalau MC panik dan hancurkan bukti karena takut → geser ke Jalur A, tapi sudah terlambat]'},
 
-  {id:'b64', x:2950, y:BY, r:17, ...P.b, day:'Hari 34', icon:'📸', label:'Bukti\nDifoto Semua',
+  {id:'b64', x:2890, y:BY, r:17, ...P.b, day:'Hari 34', icon:'📸', label:'Bukti\nDifoto Semua',
    tag:'Jalur B', title:'B · Hari 34 — Dokumentasi Bukti',
    desc:'MC dan Rendi foto semua dokumen. Rendi punya kontak jurnalis di kota. Rencana: keluar Hari 37 sebelum Ustadz Faruq curiga. Ucok tidur di atas tumpukan dokumen seolah jaga.'},
 
   // MERGED: b65 + b66
-  {id:'b65', x:3084, y:BY, r:17, ...P.b, day:'Hari 35', icon:'⚠️', label:'Diawasi &\nBocor',
+  {id:'b65', x:3050, y:BY, r:17, ...P.b, day:'Hari 35', icon:'⚠️', label:'Diawasi &\nBocor',
    tag:'Jalur B', title:'B · Hari 35 — Diawasi & Rencana Bocor',
    desc:'Pak RT tiba-tiba jarang muncul. Tapi MC merasa lebih diawasi. Ada motor yang parkir di depan gang dari pagi sampai malam — beda orang, beda motor, tapi pose mereka sama: tidak melakukan apa-apa.\n\nRendi telpon panik: ada yang tahu mereka masuk gudang. Rencana harus dipercepat. "Besok. Jam 4 subuh. Jangan kasih tahu siapapun."'},
 
-  {id:'bp2b',x:3218, y:BY, r:28, ...P.b2b, day:'Hari 37', icon:'⚑', label:'BP2-B',
+  {id:'bp2b',x:3230, y:BY, r:28, ...P.b2b, day:'Hari 37', icon:'⚑', label:'BP2-B',
    tag:'Branch Point', title:'Hari 37 — Branch Point 2 (Jalur B)',
    desc:'Jam 3.45 subuh. Rendi ada di luar. Tapi ada ketukan — suara Pak RT. "Mas, ada yang mau aku omongin sebentar."\n\n[B1] Kabur — tidak buka pintu, langsung pergi lewat jendela belakang\n[B2] Konfrontasi — buka pintu, hadapi Pak RT dengan bukti yang ada'},
 
   // ── JALUR C ──
-  {id:'c52', x:2280, y:CY, r:18, ...P.c, day:'Hari 29', icon:'🌿', label:'Mengintip\nRitual',
+  {id:'c52', x:2250, y:CY, r:18, ...P.c, day:'Hari 29', icon:'🌿', label:'Mengintip\nRitual',
    tag:'Jalur C', title:'C · Hari 29 — Ritual yang Tidak Boleh Dilihat',
    desc:'MC ikut tapi tidak masuk. Dari balik pohon cemara, MC mengintip ke celah jendela gudang. Yang dilihat MC: sesuatu yang tidak bisa dideskripsikan dengan kata-kata yang dimiliki MC. MC pulang. Tidak bisa cerita ke siapapun.'},
 
-  {id:'c53', x:2401, y:CY, r:17, ...P.c, day:'Hari 30', icon:'🤐', label:'Tidak Bisa\nCerita',
-   tag:'Jalur C', title:'C · Hari 30 — MC Tidak Bisa Cerita',
-   desc:'MC coba nulis di notes HP apa yang dilihat. Hapus. Tulis lagi. Hapus lagi. Setiap kali mencoba merumuskan, kata-katanya tidak keluar. Ucok duduk di pangkuan, tidak bergerak seharian.'},
+  // MERGED: c53 + c55
+  {id:'c53', x:2410, y:CY, r:17, ...P.c, day:'Hari 30', icon:'🤐', label:'Tidak Bisa\nProses',
+   tag:'Jalur C', title:'C · Hari 30–31 — Tidak Bisa Proses',
+   desc:'MC coba nulis di notes HP apa yang dilihat malam itu. Hapus. Tulis lagi. Hapus lagi. Setiap kali mencoba merumuskan, kata-katanya tidak keluar. Ucok duduk di pangkuan, tidak bergerak seharian.\n\nHari 31, MC coba foto gudang dari jauh. Semua foto keluar blur, atau hitam, atau keluar foto yang MC tidak ingat mengambilnya — foto kontrakan, foto Ucok tidur, foto MC sendiri dari belakang.'},
 
-  {id:'c55', x:2522, y:CY, r:17, ...P.c, day:'Hari 31', icon:'📷', label:'Foto-Foto\nKosong',
-   tag:'Jalur C', title:'C · Hari 31 — Foto yang Tidak Bisa Diambil',
-   desc:'MC coba foto gudang dari jauh. Semua foto keluar blur, atau hitam, atau keluar foto yang MC tidak ingat mengambilnya. Foto kontrakan. Foto Ucok tidur. Foto MC sendiri dari belakang.'},
-
-  {id:'c57', x:2643, y:CY, r:17, ...P.c, day:'Hari 32', icon:'🌀', label:'Mulai\nDisosiasi',
+  {id:'c57', x:2570, y:CY, r:17, ...P.c, day:'Hari 32', icon:'🌀', label:'Mulai\nDisosiasi',
    tag:'Jalur C', title:'C · Hari 32 — Batas Nyata Mulai Kabur',
    desc:'MC mulai ragu ingatan sendiri. Apakah benar-benar lihat ritual? Atau hanya mimpi? MC cek sepatu — ada tanah sawah. MC cek jaket — ada bau asap lilin. Tapi MC tidak yakin.'},
 
-  {id:'c59', x:2764, y:CY, r:17, ...P.c, day:'Hari 33', icon:'🪞', label:'Lihat\nDirinya Sendiri',
-   tag:'Jalur C', title:'C · Hari 33 — Doppelgänger',
-   desc:'MC lihat dari jendela: dirinya sendiri berjalan di gang bawah. Pakai baju yang sama, tas yang sama. Yang di bawah itu menoleh ke atas. Menatap MC. Lalu pergi.'},
+  // MERGED: c59 + c62
+  {id:'c59', x:2730, y:CY, r:17, ...P.c, day:'Hari 33', icon:'🪞', label:'Realita\nRuntuh',
+   tag:'Jalur C', title:'C · Hari 33–34 — Realita Runtuh',
+   desc:'Hari 33, MC lihat dari jendela: dirinya sendiri berjalan di gang bawah. Pakai baju yang sama, tas yang sama. Yang di bawah itu menoleh ke atas. Menatap MC. Lalu pergi.\n\nHari 34, MC lihat Ucok di atas lemari. Pergi ambil makan. Kembali — tidak ada. Tidak ada jejak turun. Mangkuk tidak disentuh. MC duduk di lantai dua jam.'},
 
-  {id:'c62', x:2885, y:CY, r:17, ...P.c, day:'Hari 34', icon:'🐾', label:'Ucok:\nNyata atau?',
-   tag:'Jalur C', title:'C · Hari 34 — Ucok: Nyata atau Halusinasi?',
-   desc:'MC lihat Ucok di atas lemari. Pergi ambil makan. Kembali — tidak ada. Tidak ada jejak turun. Mangkuk tidak disentuh. MC duduk di lantai dua jam.'},
-
-  {id:'c64', x:3006, y:CY, r:17, ...P.c, day:'Hari 35', icon:'🛏️', label:'Tidak\nKeluar Kamar',
+  {id:'c64', x:2890, y:CY, r:17, ...P.c, day:'Hari 35', icon:'🛏️', label:'Tidak\nKeluar Kamar',
    tag:'Jalur C', title:'C · Hari 35 — Tiga Hari Tidak Keluar',
    desc:'MC tidak kerja. Tidak buka pintu. MC duduk di sudut kasur menghadap tembok. Sesekali ada yang lewat di luar jendela.\n\n⚠ [Branch Switch tersedia: C→A — kalau MC dalam kondisi disosiasi pasif mengikuti Pak RT yang datang → geser ke Jalur A, versi tanpa sadar]'},
 
-  {id:'c65', x:3127, y:CY, r:17, ...P.c, day:'Hari 36', icon:'📄', label:'Kertas di\nBawah Pintu',
+  {id:'c65', x:3050, y:CY, r:17, ...P.c, day:'Hari 36', icon:'📄', label:'Kertas di\nBawah Pintu',
    tag:'Jalur C', title:'C · Hari 36 — Daftar Nama',
    desc:'Ada kertas slip masuk dari bawah pintu. MC ambil. Ada daftar nama — semua "yang sudah pergi." Di bawah semua nama itu: nama MC. Dengan tanda tanya. Dan tulisan tangan: "Masih belum terlambat untuk pergi."'},
 
-  {id:'bp2c',x:3250, y:CY, r:28, ...P.b2c, day:'Hari 38', icon:'⚑', label:'BP2-C',
+  {id:'bp2c',x:3230, y:CY, r:28, ...P.b2c, day:'Hari 38', icon:'⚑', label:'BP2-C',
    tag:'Branch Point', title:'Hari 38 — Branch Point 2 (Jalur C)',
    desc:'Ada yang ketuk pintu malam itu. Suara Pak RT — atau sesuatu yang terdengar seperti Pak RT.\n\nMC tidak bisa bergerak dari sudut kasur.\n\n[B3] Freeze total — MC tidak melakukan apa-apa'},
 
   // ── ENDINGS ──
-  {id:'e_bad1',x:3510,y:80,  r:24, ...P.bad, day:'Bad Ending 1', icon:'✕', label:'Terjebak\n(A → B1)',
+  {id:'e_bad1',x:3450,y:80,  r:24, ...P.bad, day:'Bad Ending 1', icon:'✕', label:'Terjebak\n(A → B1)',
    tag:'Bad Ending', title:'Bad Ending 1 — Tidak Ada yang Menunggu',
    desc:'MC kabur tapi semua jalur keluar sudah ditutup. Motor MC hilang. HP tidak ada sinyal.\n\nUcok ditemukan tiga hari kemudian — sendirian di depan kontrakan yang dikunci dari luar.'},
 
-  {id:'e_bad2',x:3510,y:210, r:24, ...P.bad, day:'Bad Ending 2', icon:'✕', label:'Konfrontasi\nGagal (A → B2)',
+  {id:'e_bad2',x:3450,y:210, r:24, ...P.bad, day:'Bad Ending 2', icon:'✕', label:'Konfrontasi\nGagal (A → B2)',
    tag:'Bad Ending', title:'Bad Ending 2 — Tanpa Bukti, Tanpa Backing',
    desc:'MC datangi Ustadz Faruq langsung. Tidak ada bukti. Ustadz Faruq tetap tenang — bahkan tersenyum.\n\nTiga hari kemudian cerita yang beredar: ada perantau dari Medan yang gangguan jiwa, dibawa pulang.'},
 
-  {id:'e_ses', x:3510,y:330, r:24, ...P.ses, day:'Sesat Ending',  icon:'☠', label:'Direkrut\n(A → B4)',
+  {id:'e_ses', x:3450,y:330, r:24, ...P.ses, day:'Sesat Ending',  icon:'☠', label:'Direkrut\n(A → B4)',
    tag:'Sesat Ending', title:'Sesat Ending — Bergabung Secara Sadar (atau Tidak)',
    desc:'MC abaikan Rendi, hadir di acara Ustadz Faruq. Malam itu MC resmi menjadi bagian dari jaringan pesugihan.\n\nUcok tidak ditemukan. Selamanya.\nWahyu terlepas — tidak bisa tinggal di tubuh seseorang yang bergabung dengan jaringan yang membunuhnya.'},
 
-  {id:'e_sec', x:3510,y:440, r:24, ...P.sec, day:'Secret Ending', icon:'★', label:'Kabur Bersama\nRendi (B → B1)',
+  {id:'e_sec', x:3450,y:440, r:24, ...P.sec, day:'Secret Ending', icon:'★', label:'Kabur Bersama\nRendi (B → B1)',
    tag:'Secret Ending', title:'Secret Ending — Pintu Terbuka, Hanya Sedikit',
    desc:'Rendi dan MC kabur jam 4 subuh. Bawa semua dokumen. Ucok di carrier.\n\nUstadz Faruq tidak bisa disentuh hukum secara langsung — tapi nama Ngudilancur mulai muncul di forum online. Kecil. Tapi ada.\n\nWahyu akhirnya bisa "istirahat."'},
 
-  {id:'e_tru', x:3510,y:545, r:24, ...P.tru, day:'True Ending',   icon:'✦', label:'Kebenaran\nTerungkap (B → B2)',
+  {id:'e_tru', x:3450,y:545, r:24, ...P.tru, day:'True Ending',   icon:'✦', label:'Kebenaran\nTerungkap (B → B2)',
    tag:'True Ending', title:'True Ending — Ngudilancur Akhirnya Bernapas',
    desc:'MC buka pintu. Di belakang MC: Rendi dengan dokumen. Di luar: jurnalis yang sudah Rendi hubungi.\n\nUstadz Faruq ditangkap. Pak RT lari, tertangkap dua jam kemudian.\n\nUcok tidur di pangkuan MC, perjalanan pulang ke Medan. Nama-nama yang "sudah pergi" mulai diselidiki.'},
 
-  {id:'e_skz', x:3510,y:645, r:24, ...P.skz, day:'Skizo Ending',  icon:'⁇', label:'Runtuh\n(C → B3)',
+  {id:'e_skz', x:3450,y:645, r:24, ...P.skz, day:'Skizo Ending',  icon:'⁇', label:'Runtuh\n(C → B3)',
    tag:'Skizo Ending', title:'Skizo Ending — Kita Tidak Pernah Tahu',
    desc:'MC tidak membuka pintu. MC tidak bergerak. Ketukan berhenti setelah 27 kali.\n\nKita tidak tahu apa yang terjadi setelah itu. Apakah MC selamat? Apakah Ucok nyata? Mana suara MC, mana suara Wahyu?\n\nScene terakhir: kamar kosong. Mangkuk makan bersih. Suara ngeong yang sangat jauh.'},
 ];
@@ -332,29 +296,28 @@ const EDGES=[
   {f:'d1', t:'d2', c:'#4a8aaa'},
   {f:'d2', t:'d4', c:'#6a3a8a'},   // d3 dihapus, d2 langsung ke d4
   {f:'d4', t:'d5', c:'#6a3a8a'},
-  {f:'d5', t:'d6', c:'#4a8aaa'}, {f:'d6', t:'d7', c:'#4a8aaa'}, {f:'d7', t:'d10',c:'#4a8aaa'},
-  {f:'d10',t:'d14',c:'#4a8aaa'}, {f:'d14',t:'d17',c:'#4a8aaa'}, {f:'d17',t:'d20',c:'#4a8aaa'},
-  {f:'d20',t:'d21',c:'#4a8aaa'}, {f:'d21',t:'d24',c:'#4a8aaa'}, {f:'d24',t:'d28',c:'#4a8aaa'},
-  {f:'d28',t:'d31',c:'#4a8aaa'}, {f:'d31',t:'d35',c:'#4a8aaa'}, {f:'d35',t:'d37',c:'#4a8aaa'},
-  {f:'d37',t:'d38',c:'#4a8aaa'}, {f:'d38',t:'d42',c:'#4a8aaa'}, {f:'d42',t:'d45',c:'#4a8aaa'},
-  {f:'d45',t:'d48',c:'#4a8aaa'}, {f:'d48',t:'d49',c:'#4a8aaa'}, {f:'d49',t:'d50',c:'#4a8aaa'},
-  {f:'d50',t:'bp1',c:'#4a8aaa'},
+  {f:'d5', t:'d6', c:'#4a8aaa'}, {f:'d6', t:'d7', c:'#4a8aaa'},
+  {f:'d7', t:'d14',c:'#4a8aaa'}, {f:'d14',t:'d17',c:'#4a8aaa'},
+  {f:'d17',t:'d21',c:'#4a8aaa'}, {f:'d21',t:'d28',c:'#4a8aaa'},
+  {f:'d28',t:'d35',c:'#4a8aaa'}, {f:'d35',t:'d38',c:'#4a8aaa'},
+  {f:'d38',t:'d45',c:'#4a8aaa'}, {f:'d45',t:'d49',c:'#4a8aaa'},
+  {f:'d49',t:'bp1',c:'#4a8aaa'},
   // Branch Point 1 → jalur
   {f:'bp1',t:'a52',c:'#c84a4a',lbl:'A'}, {f:'bp1',t:'b52',c:'#4aaa4a',lbl:'B'}, {f:'bp1',t:'c52',c:'#a04acc',lbl:'C'},
   // Jalur A
-  {f:'a52',t:'a54',c:'#c84a4a'}, {f:'a54',t:'a56',c:'#c84a4a'}, {f:'a56',t:'a58',c:'#c84a4a'},
+  {f:'a52',t:'a54',c:'#c84a4a'}, {f:'a54',t:'a58',c:'#c84a4a'},
   {f:'a58',t:'a60',c:'#c84a4a'},
   {f:'a60',t:'a63',c:'#c84a4a'}, // a62 dihapus, a60 langsung ke a63
   {f:'a63',t:'a65',c:'#c84a4a'}, {f:'a65',t:'bp2a',c:'#c84a4a'},
   // Jalur B
-  {f:'b52',t:'b53',c:'#4aaa4a'}, {f:'b53',t:'b55',c:'#4aaa4a'}, {f:'b55',t:'b57',c:'#4aaa4a'},
+  {f:'b52',t:'b55',c:'#4aaa4a'}, {f:'b55',t:'b57',c:'#4aaa4a'},
   {f:'b57',t:'b60',c:'#4aaa4a'},
   {f:'b60',t:'b64',c:'#4aaa4a'}, // b62 dihapus, b60 langsung ke b64
   {f:'b64',t:'b65',c:'#4aaa4a'},
   {f:'b65',t:'bp2b',c:'#4aaa4a'}, // b66 dihapus, b65 langsung ke bp2b
   // Jalur C
-  {f:'c52',t:'c53',c:'#a04acc'}, {f:'c53',t:'c55',c:'#a04acc'}, {f:'c55',t:'c57',c:'#a04acc'},
-  {f:'c57',t:'c59',c:'#a04acc'}, {f:'c59',t:'c62',c:'#a04acc'}, {f:'c62',t:'c64',c:'#a04acc'},
+  {f:'c52',t:'c53',c:'#a04acc'}, {f:'c53',t:'c57',c:'#a04acc'},
+  {f:'c57',t:'c59',c:'#a04acc'}, {f:'c59',t:'c64',c:'#a04acc'},
   {f:'c64',t:'c65',c:'#a04acc'}, {f:'c65',t:'bp2c',c:'#a04acc'},
   // Endings
   {f:'bp2a',t:'e_bad1',c:'#ff4444',lbl:'B1'}, {f:'bp2a',t:'e_bad2',c:'#ff4444',lbl:'B2'}, {f:'bp2a',t:'e_ses',c:'#cc22dd',lbl:'B4'},
@@ -380,6 +343,6 @@ const CROSS=[
 const REWIND=[
   {f:'d5', t:'d4',lbl:'↺',desc:'Gosip emak-emak bikin MC sadar ada yang terlupa di Hari 3'},
   {f:'d7', t:'d4',lbl:'↺',desc:'Ucok ngeong ke dinding — Wahyu masih gelisah setelah malam Hari 3'},
-  {f:'d24',t:'d4',lbl:'↺',desc:'Sobekan kain kafan — peninggalan fisik dari malam blackout'},
+  {f:'d21',t:'d4',lbl:'↺',desc:'Sobekan kain kafan — peninggalan fisik dari malam blackout'},
   {f:'b57',t:'d4',lbl:'↺',desc:'Rendi tanya "lo ngobrol sama siapa?" — MC pertama kali dibenturkan ke memori Hari 3'},
 ];

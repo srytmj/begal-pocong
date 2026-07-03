@@ -13,6 +13,10 @@
     <button class="tab active" onclick="showView('map')">Story Map</button>
     <button class="tab" onclick="showView('chars')">Karakter</button>
   </div>
+</header>
+
+<!-- ══ VIEW: STORY MAP ══ -->
+<div id="view-map">
   <div id="legend">
     <div class="leg"><div class="leg-dot" style="background:#4a8aaa"></div>Shared</div>
     <div class="leg"><div class="leg-dot" style="background:#c84a4a"></div>Jalur A</div>
@@ -22,10 +26,6 @@
     <div class="leg"><div class="leg-dot" style="background:#cc9933;border-radius:0"></div>Branch Switch</div>
     <div class="leg"><div class="leg-dot" style="background:#cc3333"></div>Ending</div>
   </div>
-</header>
-
-<!-- ══ VIEW: STORY MAP ══ -->
-<div id="view-map">
   <div id="zoom-bar">
     <button class="zb" onclick="changeZoom(1.2)">+</button>
     <span id="zoom-pct">60%</span>
